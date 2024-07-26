@@ -1,65 +1,98 @@
-//---------------------importation du modèle user--------------------------------
-const User = require("../models/userModel");
+const mongoose = require('mongoose');
+const bcrypt = require('bcryptjs');
 
-//-----------------------------création d'un utilisateur-----------------------------------
-module.exports.newUser = async (req, res) => {
-  const { Name, First_Name, Address, Phone, Email } = req.body;
-  try {
-    const user = await User.create({ Name, First_Name, Address, Phone, Email });
-    res.status(201).json(`User in ${user}`);
-  } catch (err) {
-    res.status(500).json(`Aww!!! ${err}`);
+const UserSchema = new mongoose.Schema({
+  username: {
+    type: String,
+    required: true,
+    unique: true,
+  },
+  email: {
+    type: String,
+    required: true,
+    unique: true,
+  },
+  password: {
+    type: String,
+    required: true,
+  },
+});
+
+UserSchema.pre('save', async function(next) {
+  if (this.isModified('password')) {
+    const salt = await bcrypt.genSalt(10);
+    this.password = await bcrypt.hash(this.password, salt);
   }
-};
+  next();
+});
 
-//-------------------------------Trouver tous les utilisateurs------------------------------------
-module.exports.allUser = async (res) => {
+const User = mongoose.model('User', UserSchema);
+
+// Find all users
+async function allUsers(req, res) {
   try {
-    const user = await User.find();
-    res.status(201).json(user);
+    const users = await User.find();
+    return res.status(200).json(users);
   } catch (err) {
-    res.status(500).json(`Aww!!! ${err}`);
+    console.error(err);
+    return res.status(500).json({ message: 'Error fetching users' });
   }
-};
+}
 
-//----------------------------Trouver un utilisateur----------------------------------------
-module.exports.anUser = async (req, res) => {
+// Find one user
+async function getUser(req, res) {
   try {
     const user = await User.findById(req.params.id);
-    res.status(201).json(user);
-  } catch (error) {
-    res.status(500).json(`Aww!!! ${error}`);
+    if (!user) {
+      return res.status(404).json({ message: 'User not found' });
+    }
+    return res.status(200).json(user);
+  } catch (err) {
+    console.error(err);
+    return res.status(500).json({ message: 'Error fetching user' });
   }
-};
+}
 
-//---------------------------trouver et modifier un utilisateur--------------------------------------
-module.exports.updateUser = async (req, res) => {
+// Update user
+async function updateUser(req, res) {
   try {
     const user = await User.findOneAndUpdate(
       { _id: req.params.id },
       {
         $set: {
-          Name: req.body.Name,
-          First_Name: req.body.First_Name,
-          Address: req.body.Address,
-          Phone: req.body.Phone,
-          Email: req.body.Email,
+          username: req.body.username,
+          email: req.body.email,
         },
       },
       { new: true }
     );
-    res.status(201).json(user);
-  } catch (error) {
-    res.status(500).json(`Aww!!! ${error}`);
+    if (!user) {
+      return res.status(404).json({ message: 'User not found' });
+    }
+    if (req.body.password) {
+      const salt = await bcrypt.genSalt(10);
+      user.password = await bcrypt.hash(req.body.password, salt);
+      await user.save();
+    }
+    return res.status(200).json(user);
+  } catch (err) {
+    console.error(err);
+    return res.status(500).json({ message: 'Error updating user' });
   }
-};
+}
 
-//-----------------------------supprimer un utilisateur----------------------------------------------
-module.exports.deleteUser = async (req, res) => {
+// Delete user
+async function deleteUser(req, res) {
   try {
     const user = await User.findByIdAndDelete(req.params.id);
-    res.status(201).json(`User remover ${user}`);
-  } catch (error) {
-    res.status(500).json(`Aww!!! ${error}`);
+    if (!user) {
+      return res.status(404).json({ message: 'User not found' });
+    }
+    return res.status(200).json({ message: 'User deleted' });
+  } catch (err) {
+    console.error(err);
+    return res.status(500).json({ message: 'Error deleting user' });
   }
-};
+}
+
+module.exports = { allUsers, getUser, updateUser, deleteUser };
