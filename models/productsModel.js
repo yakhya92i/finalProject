@@ -22,10 +22,6 @@ const ProductSchema = mongoose.Schema(
       required: true, // Prix du produit, requis
       default: 0, // Valeur par défaut du prix
     },
-    addDate: {
-      type: Date,
-      required: false, // Date d'ajout du produit, non requise
-    },
   },
   {
     timestamps: true, // Ajoute les champs createdAt et updatedAt automatiquement
