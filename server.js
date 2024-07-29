@@ -1,52 +1,35 @@
-const express = require('express');
-const bodyParser = require('body-parser');
-const cors = require("cors")
-const mongoose = require('mongoose');
+const express = require("express");
+const mongoose = require("mongoose");
+
+
+require("dotenv").config()
+
+//connection to the database
+mongoose.connect(process.env.MONGO_URI)
+.then(()=> console.log(" connection to the db"))
+.catch((err)=> console.log(err));
+
 const app = express();
 
-require("dotenv").config({path: './config/.env'});
-require('./config/db')
+const PORT = process.env.PORT || 6000
 
-
-// Middleware
-app.use(cors())
 app.use(express.json());
-app.use(bodyParser.json());
+app.use(express.urlencoded({ extended: false }));
 
-// Import routes
-const productsRoutes = require('./routes/productsRoutes');
-const userRouter= require('./routes/userRoutes');
-app.use('/api', userRouter);
-app.use('/', productsRoutes);
+const userRoute = require('./routes/userRoutes');
+const orderRoute = require('./routes/ordersRoutes');
+const productRoute = require("./routes/productsRoutes");
+const authRoute = require("./routes/authRoutes");
 
-// Routes
-app.get('/', (req, res) => {
-  res.send("API is running...");
+app.use("/api/products", productRoute);
+app.use("/api/user", userRoute);
+app.use("/api/order", orderRoute);
+// app.use("/api/auth", authRoute);
+
+app.get("/", (req, res) => {
+  res.send("Hello from Node API Server Updated");
 });
 
-const authRoutes = require('./routes/auth');
-app.use('/api/auth', authRoutes);
-
-app.listen(6000, () => {
-    console.log('Server is running on port 3000');
-});
-
-
-const PORT = process.env.PORT || 6000;
-app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
-
-// MongoDB connection
-mongoose.connect('mongodb://localhost:27017/auth-demo', {
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
-});
-
-const db = mongoose.connection;
-db.on('error', console.error.bind(console, 'connection error:'));
-db.once('open', () => {
-  console.log('Connected to MongoDB');
-});
-
-app.listen(6000, () => {
-  console.log('Server is running on port 6000');
+app.listen(PORT, () => {
+  console.log(`Server running on port ${PORT}`);
 });

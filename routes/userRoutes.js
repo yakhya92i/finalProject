@@ -1,16 +1,21 @@
 const express = require("express");
 const router = express.Router();
-const userController = require("../controllers/userController");
+const userController = require("../controllers/userController")
+const { authenticateToken } = require("../controllers/Auth"); 
+const Auth = require("../controllers/Auth")
 
-//--------method get all users--------------
-router.get("/allUsers", userController.allUser);
-//--------method get an user----------------
-router.get("/anUser/:id", userController.anUser);
-//---------method post a new user-------------
-router.post("/newUser", userController.newUser);
-//-------------method update an user---------------
-router.put("/updateUser/:id", userController.updateUser);
-//--------------method delete an user------------------
-router.delete("/deleteUser/:id", userController.deleteUser);
+
+const jwt = require("jsonwebtoken");
+
+router.post("/create-account", userController.newUser);
+
+router.post("/login",  userController.existingUser);
+
+
+//Authentication with JWT
+router.post("/signup", Auth.signUP);
+router.post("/signin", Auth.signIn);
+
+//router.get("/get-user", authenticateToken, userController.isUser);
 
 module.exports = router;

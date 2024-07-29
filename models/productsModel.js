@@ -1,12 +1,39 @@
-const mongoose = require('mongoose');
+const mongoose = require("mongoose");
 
-const productSchema = new mongoose.Schema({
-  name: { type: String, required: true },
-  description: { type: String },
-  type: { type: String, enum: ['petroleum', 'gas'], required: true },
-  quantity: { type: Number, required: true },
-  unit: { type: String, required: true },
-  dateAdded: { type: Date, default: Date.now }
-});
+// Définition du schéma pour les produits (Product)
+const ProductSchema = mongoose.Schema(
+  {
+    type: {
+      type: String,
+      enum: ["gaz", "petrole"], // Limite les valeurs à "gaz" ou "petrole"
+      required: [true, "Please select either 'gaz' or 'petrole'"],
+    },
+    name: {
+      type: String,
+      required: [true, "Please enter product name"], // Nom du produit, requis
+    },
+    quantity: {
+      type: Number,
+      required: true, // Quantité du produit, requise
+      default: 0, // Valeur par défaut de la quantité
+    },
+    price: {
+      type: Number,
+      required: true, // Prix du produit, requis
+      default: 0, // Valeur par défaut du prix
+    },
+    addDate: {
+      type: Date,
+      required: false, // Date d'ajout du produit, non requise
+    },
+  },
+  {
+    timestamps: true, // Ajoute les champs createdAt et updatedAt automatiquement
+  }
+);
 
-module.exports = mongoose.model('Product', productSchema);
+// Création du modèle Product basé sur le schéma ProductSchema
+const Product = mongoose.model("Product", ProductSchema);
+
+// Exportation du modèle Product pour l'utiliser dans d'autres parties de l'application
+module.exports = Product;
