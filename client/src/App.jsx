@@ -5,6 +5,7 @@ import Footer from './components/Footer';
 import Home from './components/Home';
 import SignIn from './pages/Login/SignIn';
 import Dashboard from './pages/Login/Dashboard';
+import Product from './pages/Login/Products';
 import InStock from './pages/Login/InStocks';
 import Users from './pages/Login/Users';
 
@@ -19,6 +20,7 @@ const routes = (
       <Route path="/" element={<Home />} />
       {/* design dune route protégé */}
       {token && <Route path="/dashboard" element={<Dashboard />} />}
+      {token && <Route path="/products" element={<Product />} />}
       {token && <Route path="/instock" element={<InStock />} />}
       {token && <Route path="/users" element={<Users />} />}
       <Route path="/footer" element={<Footer />} />

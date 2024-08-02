@@ -2,6 +2,7 @@ import React from 'react';
 // import SignIn from '../pages/Login/SignIn';
 import Header from './Header';
 import Footer from './Footer';
+import Body from './Body';
 
 function Home() {
   // const handleSignOut = () => {
@@ -10,10 +11,9 @@ function Home() {
   // }
   return (
     <div>
-      <Header></Header>
-      {/* <h1>welcome to fueltrack</h1>
-      <button onClick={handleSignOut}>Sign Out</button> */}
-      <footer></footer>
+      <Header />
+      <Body />
+      <Footer />
     </div>
   )
 }

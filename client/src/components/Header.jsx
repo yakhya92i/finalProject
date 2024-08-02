@@ -1,12 +1,14 @@
 import React from "react";
 import { Link } from "react-router-dom";
+
+
 const Header = () => {
   return (
     <header className="bg-gray-800 text-white w-full">
       <div className="container mx-auto flex justify-between items-center w-full ">
         {/* Logo */}
         <div className="flex items-center">
-          <img src="/public/logo.png" alt="Logo" className="h-10 ml-4 mr-4" />
+          {/* <img src="/public/logo.png" alt="Logo" className="h-10 ml-4 mr-4" /> */}
           <span className="text-xl font-bold">FuelTrack</span>
         </div>
 
@@ -33,8 +35,7 @@ const Header = () => {
         <div className="flex items-center">
 
           <Link to="/login" >
-            <button className="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mr-4">
-              {/* <link rel="/SignIn" href="/SignIn" /> */}
+            <button className="bg-blue-900 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mr-4">
               <svg
                 className="w-6 h-6"
                 fill="none"

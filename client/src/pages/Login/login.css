@@ -10,9 +10,12 @@
 body {
   background-color: #c9d6ff;
   background: linear-gradient(to right, #e2e2e2, #c9d6ff);
-  display: flex;
-  align-items: center;
+
+}
+.containerPlus{
   justify-content: center;
+  align-items: center;
+  display: flex;
   flex-direction: column;
   height: 100vh;
 }
@@ -26,6 +29,9 @@ body {
   width: 768px;
   max-width: 100%;
   min-height: 480px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .yakhya p {
@@ -47,7 +53,7 @@ body {
 }
 
 .yakhya button {
-  background-color: #512da8;
+  background-color: #fbbb21;
   color: #fff;
   font-size: 12px;
   padding: 10px 45px;
@@ -164,9 +170,9 @@ body {
 }
 
 .toggle {
-  background-color: #512da8;
+  background-color: #0942ae;
   height: 100%;
-  background: linear-gradient(to right, #5c6bc0, #512da8);
+  background: linear-gradient(to right, #0942ae, #0942ae);
   color: #fff;
   position: relative;
   left: -100%;

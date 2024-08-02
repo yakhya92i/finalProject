@@ -16,7 +16,7 @@ const data = [
 
 const Dashboard = () => {
     return (
-        <div className="flex h-screen bg-gray-100 mt-20">
+        <div className="flex h-screen bg-gray-100 mt-10">
             {/* Sidebar */}
             <div className="w-1/6 bg-blue-900 text-white">
                 <div className="p-4">
@@ -33,18 +33,24 @@ const Dashboard = () => {
                             <span>In Stock</span>
                         </a>
                     </Link>
+                    <Link to="/products" >
                     <a href="#" className="flex items-center space-x-2">
                         <FaTags />
                         <span>Products</span>
                     </a>
+                    </Link>
+                    <Link to="/sales" >
                     <a href="#" className="flex items-center space-x-2">
                         <FaShoppingCart />
                         <span>Sales</span>
                     </a>
+                    </Link>
+                    <Link to="/orders" >
                     <a href="#" className="flex items-center space-x-2">
                         <FaShoppingCart />
                         <span>Orders</span>
                     </a>
+                    </Link>
                     <Link to="/users" >
                         <a href="#" className="flex items-center space-x-2">
                             <FaUser />
@@ -59,7 +65,7 @@ const Dashboard = () => {
                 <div className="flex justify-between items-center">
                     <h2 className="text-2xl font-bold">Dashboard</h2>
                     <div className="flex items-center space-x-4">
-                        <img src="./public/mySticker.png" alt="User Avatar" className="h-8 w-8 rounded-full" />
+                        {/* <img src="./public/mySticker.png" alt="User Avatar" className="h-8 w-8 rounded-full" /> */}
                         <span>Yakhya</span>
                         <FaSearch />
                         <FaBell />

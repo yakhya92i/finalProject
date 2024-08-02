@@ -24,37 +24,46 @@ const InStock = () => {
     };
 
     return (
-        <div className="min-h-screen flex mt-20 ">
+        <div className="min-h-screen flex mt-10 ">
             {/* Sidebar */}
             <aside className="w-64 bg-blue-900 text-white flex flex-col">
                 <nav className="flex flex-col p-4 space-y-4">
+                <Link to="/dashboard" >
                     <a href="/dashboard" className="flex items-center space-x-2">
                         <span>Dashboard</span>
                     </a>
+                    </Link>
                     <a href="/in-stock" className="flex items-center space-x-2">
                         <span>In Stock</span>
                     </a>
+                <Link to="/products" >
                     <a href="/products" className="flex items-center space-x-2">
                         <span>Products</span>
                     </a>
+                    </Link>
+                <Link to="/sales" >
                     <a href="/sales" className="flex items-center space-x-2">
                         <span>Sales</span>
                     </a>
+                    </Link>
+                <Link to="/orders" >
                     <a href="/orders" className="flex items-center space-x-2">
                         <span>Orders</span>
                     </a>
+                    </Link>
+                <Link to="/users" >
                     <a href="/users" className="flex items-center space-x-2">
                         <span>Users</span>
                     </a>
+                    </Link>
                 </nav>
             </aside>
-
             {/* Main content */}
             <main className="flex-1 bg-gray-100">
                 {/* Header */}
                 <div className="flex justify-between items-center p-4 bg-white shadow">
                     <h1 className="text-2xl font-bold">In stock</h1>
-                    <img src="path/to/avatar.jpg" alt="User Avatar" className="w-8 h-8 rounded-full" />
+                    {/* <img src="path/to/avatar.jpg" alt="User Avatar" className="w-8 h-8 rounded-full" /> */}
                             <span>Yakhya</span>
                     <div className="flex items-center space-x-4">
                         <FaSearch />
@@ -65,7 +74,6 @@ const InStock = () => {
                         </div>
                     </div>
                 </div>
-
                 {/* Categories */}
                 <div className="p-4">
                     <div className="flex space-x-4 mb-4">
@@ -73,7 +81,6 @@ const InStock = () => {
                         <button className="px-4 py-2 bg-yellow-500 text-white rounded">Category 2</button>
                         <button className="px-4 py-2 bg-yellow-500 text-white rounded">Category 3</button>
                     </div>
-
                     {/* Quick search and actions */}
                     <div className="flex justify-between items-center mb-4">
                         <div className="flex items-center space-x-2">
@@ -89,7 +96,6 @@ const InStock = () => {
                             </button>
                         </div>
                     </div>
-
                     {/* Stock table */}
                     <table className="min-w-full bg-white rounded">
                         <thead>

@@ -67,51 +67,55 @@ function SignIn() {
 
 
     return (
+        <div className="containerPlus">
+            <div className={`container  yakhya ${elementActive}`} id="container">
+                <div className="form-container sign-up">
+                    <form onSubmit={handleSignUp}>
+                        <h1>Créer un compte</h1>
+                        <div className="social-icons">
+                            <SocialButtons />
 
-        <div className={`container  yakhya ${elementActive}`} id="container">
-            <div className="form-container sign-up">
-                <form onSubmit={handleSignUp}>
-                    <h1>Créer un compte</h1>
-                    <div className="social-icons">
-                        <SocialButtons />
+                        </div>
+                        <span>ou utilisez votre email pour l'inscription</span>
+                        <input type="text" placeholder="Name" name='fullName' onChange={handleChange} />
+                        <input type="email" placeholder="Email" name='email' onChange={handleChange} />
+                        <input type="password" placeholder="Password" name='password' onChange={handleChange} />
+                        <button>S'inscrire</button>
+                    </form>
+                </div>
+                <div className="form-container sign-in">
+                    <form onSubmit={handleSignIn}>
+                        <h1>Se connecter</h1>
+                        <div className="social-icons">
+                            <SocialButtons />
 
-                    </div>
-                    <span>ou utilisez votre email pour l'inscription</span>
-                    <input type="text" placeholder="Name" name='fullName' onChange={handleChange} />
-                    <input type="email" placeholder="Email" name='email' onChange={handleChange} />
-                    <input type="password" placeholder="Password" name='password' onChange={handleChange} />
-                    <button>S'inscrire</button>
-                </form>
-            </div>
-            <div className="form-container sign-in">
-                <form onSubmit={handleSignIn}>
-                    <h1>Se connecter</h1>
-                    <div className="social-icons">
-                        <SocialButtons />
-
-                    </div>
-                    <span>ou utilisez votre mot de passe de messagerie</span>
-                    <input type="email" placeholder="Email" name='email' onChange={handleChange} />
-                    <input type="password" placeholder="Password" name='password' onChange={handleChange} />
-                    <a href="#">Mot de passe oublié?</a>
-                    <button>Se connecter</button>
-                </form>
-            </div>
-            <div className="toggle-container">
-                <div className="toggle">
-                    <div className="toggle-panel toggle-left">
-                        <h1>Content de te revoir!😁</h1>
-                        <p>Entrez vos informations personnelles pour utiliser toutes les fonctionnalités du site</p>
-                        <button onClick={btnActive} className="" id="login">Se connecter</button>
-                    </div>
-                    <div className="toggle-panel toggle-right">
-                        <h1>Salut l'ami!✌🏿</h1>
-                        <p>Enregistrez-vous avec vos données personnelles pour utiliser toutes les fonctionnalités du site.</p>
-                        <button onClick={btnActive} className="" id="register">S'inscrire</button>
+                        </div>
+                        <span>ou utilisez votre mot de passe de messagerie</span>
+                        <input type="email" placeholder="Email" name='email' onChange={handleChange} />
+                        <input type="password" placeholder="Password" name='password' onChange={handleChange} />
+                        <a href="#">Mot de passe oublié?</a>
+                        <button>Se connecter</button>
+                    </form>
+                </div>
+                <div className="toggle-container">
+                    <div className="toggle">
+                        <div className="toggle-panel toggle-left">
+                            <h1>Content de te revoir!😁</h1>
+                            <p>Entrez vos informations personnelles pour utiliser toutes les fonctionnalités du site</p>
+                            <button onClick={btnActive} className="" id="login">Se connecter</button>
+                        </div>
+                        <div className="toggle-panel toggle-right">
+                            <h1>Salut l'ami!✌🏿</h1>
+                            <p>Enregistrez-vous avec vos données personnelles pour utiliser toutes les fonctionnalités du site.</p>
+                            <button onClick={btnActive} className="" id="register">S'inscrire</button>
+                        </div>
                     </div>
                 </div>
             </div>
+
         </div>
+
+
     )
 }
 

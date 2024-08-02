@@ -3,7 +3,7 @@ import { FaFacebook, FaInstagram, FaLinkedin } from 'react-icons/fa';
 
 const Footer = () => {
     return (
-        <footer className="w-full py-8" style={{ backgroundImage: 'url(path/to/background-image.jpg)', backgroundSize: 'cover', backgroundPosition: 'center' }}>
+        <footer className="w-full py-8 bg-blue-800 py-6 text-center" style={{ backgroundImage: 'url(path/to/background-image.jpg)', backgroundSize: 'cover', backgroundPosition: 'center' }}>
             <div className="container mx-auto grid grid-cols-1 md:grid-cols-3 gap-8 text-black">
                 {/* Contact Information */}
                 <div>
@@ -24,7 +24,7 @@ const Footer = () => {
                 </div>
 
                 {/* Contact Form */}
-                <div>
+                {/* <div>
                     <h3 className="text-xl font-bold mb-4">Nous contacter</h3>
                     <form className="flex flex-col space-y-4">
                         <input
@@ -48,10 +48,10 @@ const Footer = () => {
                             Envoyer
                         </button>
                     </form>
-                </div>
+                </div> */}
 
                 {/* Location and Copyright */}
-                <div className="flex flex-col justify-between">
+                <div className="flex flex-col justify-between ">
                     <div>
                         <h3 className="text-xl font-bold mb-4">Localisation</h3>
                         <p>Point E rue 5,</p>
